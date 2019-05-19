@@ -14,5 +14,5 @@ It could probably be more failsafe and idiot proof as well...
 To use this, you need to contact Domeneshops customer service in order to activate API access for your account. It's very very beta..
 
 ## Links
-[Domeneshop API reference](https://api.domeneshop.no/docs/)
-[Domeneshop Python API](https://github.com/domeneshop/python-domeneshop)
+* [Domeneshop API reference](https://api.domeneshop.no/docs/)
+* [Domeneshop Python API](https://github.com/domeneshop/python-domeneshop)
