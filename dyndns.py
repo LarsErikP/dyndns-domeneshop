@@ -4,6 +4,20 @@ from domeneshop import Client
 import configparser
 import requests
 import sys
+import logging
+import os
+
+homefolder = os.path.expanduser('~')
+logpath = os.path.join(homefolder, '.dyndns-domeneshop')
+
+if not os.path.isdir(logpath):
+	os.mkdir(logpath)
+
+logging.basicConfig(
+	filename=os.path.join(logpath, 'info.log'),
+	level=logging.INFO,
+	format="%(asctime)s:%(levelname)s:%(message)s"
+	)
 
 config = configparser.ConfigParser()
 config.read('settings.ini')
@@ -16,6 +30,10 @@ record = config.get('config', 'record')
 ip_service = 'http://ip.xt.gg'
 user_agent = {'User-Agent': 'curl'}
 
+def log(msg):
+	print(msg)
+	logging.info(msg)
+
 if __name__ == "__main__":
 	client = Client(token, secret)
 	domains = client.get_domains()
@@ -25,7 +43,7 @@ if __name__ == "__main__":
 			break
 
 	if not domain_id:
-		print("Domain {} not found".format(domain))
+		log("Domain {} not found".format(domain))
 		sys.exit(1)
 
 	records = client.get_records(domain_id)
@@ -35,29 +53,29 @@ if __name__ == "__main__":
 			break
 
 	if not record_id:
-		print("Record {} not found".format(record))
+		log("Record {} not found".format(record))
 		sys.exit(1)
 	
 	record_data = client.get_record(domain_id, record_id)
 	current_ip = requests.get(ip_service, headers=user_agent).text.strip()
 
 	if record_data['data'] == current_ip:
-		print("DNS is up to date with current IPv4 address ({})".format(current_ip))
-		print("Nothing to do. Bye bye!")
+		log("DNS is up to date with current IPv4 address ({})".format(current_ip))
+		log("Nothing to do. Bye bye!")
 	else:
-		print ("DNS has {}, but current IPv4 is {}".format(record_data['data'], current_ip))
+		log("DNS has {}, but current IPv4 is {}".format(record_data['data'], current_ip))
 		new_record = {
 			'data': current_ip,
 			'host': record,
 			'ttl': 3600,
 			'type': 'A'
 		}
-		print("Will send this as new record data: {}".format(new_record))
+		log("Will send this as new record data: {}".format(new_record))
 		try:
-			print("Sending new record data to Domeneshop...")
+			log("Sending new record data to Domeneshop...")
 			client.modify_record(domain_id, record_id, new_record)
 			r = client.get_record(domain_id, record_id)['data']
-			print("Great success! DNS now has {} for {}.{}".format(r, record, domain))
+			log("Great success! DNS now has {} for {}.{}".format(r, record, domain))
 		except:
-			print("Something went wrong. Either you or Domeneshop fucked up....")
+			log("Something went wrong. Either you or Domeneshop fucked up....")
 
