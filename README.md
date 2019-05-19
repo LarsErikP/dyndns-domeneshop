@@ -13,6 +13,8 @@ It could probably be more failsafe and idiot proof as well...
 
 To use this, you need to contact Domeneshops customer service in order to activate API access for your account. It's very very beta..
 
+My intention is to put this in cron. You can also do that, or you can just run it manually. It's up to you :-)
+
 ## Links
 * [Domeneshop API reference](https://api.domeneshop.no/docs/)
 * [Domeneshop Python API](https://github.com/domeneshop/python-domeneshop)
