@@ -1,0 +1,7 @@
+[secrets]
+token=<your token>
+secret=<your secret>
+
+[config]
+domain=<your domain>
+record=<your record>
