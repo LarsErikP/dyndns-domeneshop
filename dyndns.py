@@ -19,8 +19,10 @@ logging.basicConfig(
 	format="%(asctime)s:%(levelname)s:%(message)s"
 	)
 
+work_dir = os.path.dirname(__file__)
+
 config = configparser.ConfigParser()
-config.read('settings.ini')
+config.read(os.path.join(work_dir, 'settings.ini'))
 
 token = config.get('secrets', 'token')
 secret = config.get('secrets', 'secret')
