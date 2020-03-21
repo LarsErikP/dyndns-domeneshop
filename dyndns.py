@@ -29,7 +29,7 @@ secret = config.get('secrets', 'secret')
 domain = config.get('config', 'domain')
 record = config.get('config', 'record')
 
-ip_service = 'http://ip.xt.gg'
+ip_service = 'http://ifconfig.me'
 user_agent = {'User-Agent': 'curl'}
 
 def log(msg):
