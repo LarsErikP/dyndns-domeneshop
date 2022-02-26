@@ -5,3 +5,4 @@ secret=<your secret>
 [config]
 domain=<your domain>
 record=<your record>
+ttl=<ttl in seconds (multiples of 60)>
