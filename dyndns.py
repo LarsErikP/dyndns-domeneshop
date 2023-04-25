@@ -91,7 +91,7 @@ if __name__ == "__main__":
 			log("Something went wrong. Either you or Domeneshop fucked up....")
 
 	if record6_data['data'] == current_ipv6:
-		log("DNS is up to date with current IPv6 address ({})".format(current_ip))
+		log("DNS is up to date with current IPv6 address ({})".format(current_ipv6))
 		log("Nothing to do. Bye bye!")
 	else:
 		log("DNS has {}, but current IPv6 is {}".format(record6_data['data'], current_ipv6))
