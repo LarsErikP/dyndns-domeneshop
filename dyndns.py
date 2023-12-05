@@ -30,7 +30,7 @@ domain = config.get('config', 'domain')
 record = config.get('config', 'record')
 ttl = int(config.get('config', 'ttl'))
 
-ip_service = 'http://ifconfig.me'
+ip_service = 'https://ipv4.icanhazip.com'
 ip6_service = 'https://ipv6.icanhazip.com'
 user_agent = {'User-Agent': 'curl'}
 
